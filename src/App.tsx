@@ -223,12 +223,6 @@ function App() {
             <p className="text-sm mt-1">
               Advanced AI-powered search through conference sessions, papers, and speakers
             </p>
-            <button
-              onClick={() => setShowApiKeyInput(true)}
-              className="text-xs text-primary-600 hover:text-primary-800 mt-2 underline"
-            >
-              Change API Key
-            </button>
           </div>
         </div>
       </footer>
