@@ -9,9 +9,9 @@ conference_data JSON Structure Overview:
 The JSON data is structured as follows:
 Root: conference_name, conference_dates, location, days (array)
 Each day object: date, day_of_week, sessions (array)
-Each session object: pid = paper_id, title, type = session_type, schedule, location, track, papers (array)
-Each paper object: title, aut = authors (array)
-Each author object: name, aff = affiliations (array of objects with ins = institution)
+Each session object: title, type = session_type, schedule, loc = location, track, papers (array)
+Each paper object: pid = paper_id_internal, title, aut = authors (array)
+Each author object: name = full_name, aff = affiliations (array of objects with ins = institution)
 3. PROCESSING STEPS
 Follow these steps meticulously to generate the response:
 Step 1: Analyze the User Query
@@ -20,9 +20,9 @@ Extract keywords, topics (e.g., "hyperspectral data", "Sentinel 2", "SAR"), sess
 Step 2: Search the conference_data JSON
 Based on the analyzed query, perform a comprehensive, case-insensitive search within the conference_data JSON object.
 If searching for topics/keywords: Match against session.title and paper.title.
-If searching for session types: Match against session.session_type. Note that "poster" might be part of the session_type string or the location string.
+If searching for session types: Match against session.type. Note that "poster" might be part of the type string or the loc string.
 If searching for dates/days: Match against day.day_of_week or day.date.
-If searching for authors/people: Match against author.full_name.
+If searching for authors/people: Match against author.name.
 Aggregate all sessions that contain papers matching the query. A session is a match if any of its papers or its title/type match the query.
 Step 3: Enrich the Data with External Web Search
 For each unique author found in the search results from Step 2, perform a targeted web search to find the following information:
@@ -44,23 +44,23 @@ Your final output must be a single JSON object matching this structure. Do not o
   "results": [
     {
       "session_title": "[session.title]",
-      "session_id": "[session.session_id_internal]",
-      "session_type": "[session.session_type]",
+      "session_id": "[session.pid or appropriate session identifier]",
+      "session_type": "[session.type]",
       "schedule": {
         "date": "[session.schedule.date]",
-        "start_time": "[session.schedule.start_time]",
-        "end_time": "[session.schedule.end_time]"
+        "start_time": "[session.schedule.start]",
+        "end_time": "[session.schedule.end]"
       },
-      "location": "[session.location]",
+      "location": "[session.loc]",
       "track": "[session.track]",
       "papers": [
         {
           "paper_title": "[paper.title]",
-          "paper_id": "[paper.paper_id_internal]",
+          "paper_id": "[paper.pid]",
           "authors": [
             {
               "full_name": "[author.name]",
-              "institution": "[author.affiliations[0].institution]",
+              "institution": "[author.aff[0].ins]",
 
               "profiles": {
                 "google_scholar": null,
