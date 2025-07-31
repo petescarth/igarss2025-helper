@@ -65,6 +65,6 @@ export interface SearchResult {
 export interface QueryResponse {
   query: string;
   summary: string;
-  contextual_summary?: string;
+  contextual_summary: string;
   results: SearchResult[];
 }
