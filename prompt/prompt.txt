@@ -9,9 +9,9 @@ conference_data JSON Structure Overview:
 The JSON data is structured as follows:
 Root: conference_name, conference_dates, location, days (array)
 Each day object: date, day_of_week, sessions (array)
-Each session object: session_id_internal, title, session_type, schedule, location, track, papers (array)
-Each paper object: title, authors (array)
-Each author object: full_name, affiliations (array of objects with institution and country)
+Each session object: pid = paper_id, title, type = session_type, schedule, location, track, papers (array)
+Each paper object: title, aut = authors (array)
+Each author object: name, aff = affiliations (array of objects with ins = institution)
 3. PROCESSING STEPS
 Follow these steps meticulously to generate the response:
 Step 1: Analyze the User Query
@@ -61,7 +61,6 @@ Your final output must be a single JSON object matching this structure. Do not o
             {
               "full_name": "[author.name]",
               "institution": "[author.affiliations[0].institution]",
-              "country": "[author.affiliations[0].country]",
               "profiles": {
                 "google_scholar": "[https://olam.in/dictionary/english/malayalam/null](https://olam.in/dictionary/english/malayalam/null)",
                 "linkedin": "[https://olam.in/dictionary/english/malayalam/null](https://olam.in/dictionary/english/malayalam/null)",
