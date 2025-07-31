@@ -95,8 +95,8 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
               <div className="text-sm text-gray-600 mb-4">
                 Showing {results.results.length} session{results.results.length !== 1 ? 's' : ''} with {results.results.reduce((sum, session) => sum + session.papers.length, 0)} paper{results.results.reduce((sum, session) => sum + session.papers.length, 0) !== 1 ? 's' : ''}
               </div>
-              {results.results.map((session, index) => (
-                <div key={`session-${index}-${session.session_id}`} className="card">
+              {results.results.map((session, sessionIndex) => (
+                <div key={`session-${sessionIndex}-${session.session_id}-${Date.now()}`} className="card">
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -136,7 +136,7 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
                       </h4>
                       <div className="space-y-3">
                         {session.papers.map((paper, paperIndex) => (
-                          <div key={`paper-${index}-${paperIndex}-${paper.paper_id}`} className="bg-gray-50 p-4 rounded-lg">
+                          <div key={`paper-${sessionIndex}-${paperIndex}-${paper.paper_id}-${Date.now()}`} className="bg-gray-50 p-4 rounded-lg">
                             <h5 className="font-medium text-gray-800 mb-2">
                               {paper.paper_title}
                             </h5>
@@ -145,7 +145,7 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
                                 <Users className="w-4 h-4" />
                                 <div className="flex flex-wrap gap-2">
                                   {paper.authors.map((author, authorIndex) => (
-                                    <div key={authorIndex} className="flex items-center gap-1">
+                                    <div key={`author-${sessionIndex}-${paperIndex}-${authorIndex}`} className="flex items-center gap-1">
                                       <span>{author.full_name}</span>
                                       {(author.profiles.google_scholar || author.profiles.linkedin || author.profiles.other) && (
                                         <div className="flex gap-1">
