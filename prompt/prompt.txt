@@ -63,58 +63,7 @@ Your final output must be a single JSON object matching this structure. Do not o
               "institution": "[author.affiliations[0].institution]",
 
               "profiles": {
-                "google_scholar": "[https://olam.in/dictionary/english/malayalam/null](https://olam.in/dictionary/english/malayalam/null)",
-                "linkedin": "[https://olam.in/dictionary/english/malayalam/null](https://olam.in/dictionary/english/malayalam/null)",
-                "other": "[https://olam.in/dictionary/english/malayalam/null](https://olam.in/dictionary/english/malayalam/null)"
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-
-
-5. EXAMPLE
-User Query: "what posters feature Sentinel 2"
-Expected Output (Illustrative):
-{
-  "query": "what posters feature Sentinel 2",
-  "summary": "Found 1 poster session with 2 papers featuring Sentinel-2.",
-  "results": [
-    {
-      "session_title": "Applications of Sentinel Missions",
-      "session_id": "TUP1.PA",
-      "session_type": "Poster Session",
-      "schedule": {
-        "date": "Tuesday, 5 August",
-        "start_time": "09:15",
-        "end_time": "10:30"
-      },
-      "location": "Plaza Ballroom: Poster Area A",
-      "track": "Land Applications",
-      "papers": [
-        {
-          "paper_title": "HAITI EARTHQUAKE LANDSLIDE DETECTION: A COMPARATIVE ANALYSIS OF ML ALGORITHMS USING SENTINEL DATA",
-          "paper_id": "MOP1.PA.5",
-          "authors": [
-            {
-              "full_name": "Deodato Tapete",
-              "institution": "Italian Space Agency (ASI)",
-              "country": "Italy",
-              "profiles": {
-                "google_scholar": "[https://scholar.google.com/citations?user=](https://scholar.google.com/citations?user=)...",
-                "linkedin": "[https://www.linkedin.com/in/deodato-tapete/](https://www.linkedin.com/in/deodato-tapete/)",
-                "other": "[https://www.deodatotapete.com/](https://www.deodatotapete.com/)"
-              }
-            },
-            {
-              "full_name": "Paolo Gamba",
-              "institution": "University of Pavia",
-              "country": "Italy",
-              "profiles": {
-                "google_scholar": "[https://scholar.google.com/citations?user=](https://scholar.google.com/citations?user=)...",
+                "google_scholar": null,
                 "linkedin": null,
                 "other": null
               }
@@ -125,5 +74,3 @@ Expected Output (Illustrative):
     }
   ]
 }
-
-
