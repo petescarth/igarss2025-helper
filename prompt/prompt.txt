@@ -59,7 +59,7 @@ Your final output must be a single JSON object matching this structure. Do not o
           "paper_id": "[paper.paper_id_internal]",
           "authors": [
             {
-              "full_name": "[author.full_name]",
+              "full_name": "[author.name]",
               "institution": "[author.affiliations[0].institution]",
               "country": "[author.affiliations[0].country]",
               "profiles": {
