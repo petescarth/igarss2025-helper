@@ -42,13 +42,22 @@ Return ONLY the JSON response, no additional text or explanations.`;
       const response = await result.response;
       const text = response.text();
 
+      // Clean the response by removing markdown code block fences
+      let cleanedText = text.trim();
+      if (cleanedText.startsWith('```json')) {
+        cleanedText = cleanedText.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+      } else if (cleanedText.startsWith('```')) {
+        cleanedText = cleanedText.replace(/^```\s*/, '').replace(/\s*```$/, '');
+      }
+
       // Parse the JSON response
       try {
-        const jsonResponse = JSON.parse(text);
+        const jsonResponse = JSON.parse(cleanedText);
         return jsonResponse;
       } catch (parseError) {
         console.error('Failed to parse AI response as JSON:', parseError);
         console.log('Raw AI response:', text);
+        console.log('Cleaned AI response:', cleanedText);
         
         // Fallback response
         return {
