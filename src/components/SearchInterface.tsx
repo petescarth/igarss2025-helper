@@ -87,6 +87,12 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
             <h2 className="text-xl font-semibold text-primary-800 mb-2">Search Results</h2>
             <p className="text-primary-700">{results.summary}</p>
             <p className="text-sm text-primary-600 mt-2">Query: "{results.query}"</p>
+            {results.contextual_summary && (
+              <div className="mt-4 pt-4 border-t border-primary-200">
+                <h3 className="text-lg font-medium text-primary-800 mb-2">Context & Insights</h3>
+                <p className="text-primary-700 leading-relaxed">{results.contextual_summary}</p>
+              </div>
+            )}
           </div>
 
           {/* Results */}

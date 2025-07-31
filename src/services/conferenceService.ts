@@ -75,6 +75,7 @@ export class ConferenceService {
     return {
       query,
       summary,
+      contextual_summary: this.generateContextualSummary(results, query),
       results
     };
   }
@@ -158,6 +159,43 @@ export class ConferenceService {
     }
 
     return summary;
+  }
+
+  private generateContextualSummary(results: SearchResult[], query: string): string {
+    if (results.length === 0) {
+      return "No additional context available as no matching results were found.";
+    }
+
+    const normalizedQuery = query.toLowerCase();
+    
+    // Check if query is author-focused
+    const authorNames = results.flatMap(r => r.papers.flatMap(p => p.authors.map(a => a.full_name.toLowerCase())));
+    const uniqueAuthors = [...new Set(authorNames)];
+    
+    if (uniqueAuthors.some(author => normalizedQuery.includes(author.split(' ')[0].toLowerCase()))) {
+      const institutions = [...new Set(results.flatMap(r => r.papers.flatMap(p => p.authors.map(a => a.institution))))];
+      const topics = [...new Set(results.flatMap(r => r.papers.map(p => p.paper_title)))];
+      
+      return `The search reveals contributions from researchers across ${institutions.length} institution${institutions.length !== 1 ? 's' : ''}, with work spanning ${topics.length} paper${topics.length !== 1 ? 's' : ''} in areas such as ${topics.slice(0, 3).join(', ')}${topics.length > 3 ? ', and others' : ''}. This demonstrates active research collaboration and diverse expertise in the queried domain.`;
+    }
+    
+    // Check if query is topic-focused
+    if (normalizedQuery.includes('machine learning') || normalizedQuery.includes('ai') || normalizedQuery.includes('deep learning')) {
+      const tracks = [...new Set(results.map(r => r.track))];
+      return `The machine learning and AI research at this conference spans ${tracks.length} track${tracks.length !== 1 ? 's' : ''} (${tracks.join(', ')}), indicating the interdisciplinary nature of AI applications in remote sensing and geoscience. The ${results.length} session${results.length !== 1 ? 's' : ''} demonstrate${results.length === 1 ? 's' : ''} the growing integration of advanced computational methods across various Earth observation domains.`;
+    }
+    
+    // Check if query is session-type focused
+    if (normalizedQuery.includes('poster')) {
+      const posterSessions = results.filter(r => r.session_type.toLowerCase().includes('poster'));
+      return `Poster sessions provide an interactive forum for detailed technical discussions. The ${posterSessions.length} poster session${posterSessions.length !== 1 ? 's' : ''} found cover diverse research areas, offering opportunities for in-depth conversations between researchers and attendees about cutting-edge developments in their respective fields.`;
+    }
+    
+    // Generic contextual summary
+    const tracks = [...new Set(results.map(r => r.track))];
+    const sessionTypes = [...new Set(results.map(r => r.session_type))];
+    
+    return `The search results span ${tracks.length} conference track${tracks.length !== 1 ? 's' : ''} and include ${sessionTypes.length} different session type${sessionTypes.length !== 1 ? 's' : ''} (${sessionTypes.join(', ')}). This diversity reflects the multidisciplinary nature of the research area and provides multiple venues for knowledge sharing, from formal presentations to interactive discussions.`;
   }
 
   getConferenceOverview(): any {
