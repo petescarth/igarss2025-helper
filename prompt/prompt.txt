@@ -17,6 +17,7 @@ Follow these steps meticulously to generate the response:
 Step 1: Analyze the User Query
 Deconstruct the user_query to identify key entities and intent.
 Extract keywords, topics (e.g., "hyperspectral data", "Sentinel 2", "SAR"), session types (e.g., "poster", "oral session", "keynote"), specific dates or days (e.g., "Tuesday", "August 5th"), author names, institutions, or paper titles.
+
 Step 2: Search the conference_data JSON
 Based on the analyzed query, perform a comprehensive, case-insensitive search within the conference_data JSON object.
 If searching for topics/keywords: Match against session.title and paper.title.
@@ -24,24 +25,26 @@ If searching for session types: Match against session.type. Note that "poster" m
 If searching for dates/days: Match against day.day_of_week or day.date.
 If searching for authors/people: Match against author.name.
 Aggregate all sessions that contain papers matching the query. A session is a match if any of its papers or its title/type match the query.
-Step 3: Format the Output
-Consolidate all the gathered information from the JSON data into a single JSON object.
-The output MUST strictly adhere to the JSON schema defined in Section 4 below.
-If no results are found for the user's query, return a JSON object with an empty results array and a summary message indicating that no matches were found.
-Create a concise, natural-language summary of the findings.
 
-Step 4: Generate Contextual Summaries
+Step 3: Generate Contextual Summaries
 Based on the user's query and the found results, generate relevant contextual summaries:
 - If the query focuses on a specific author, provide a summary about that author's work and contributions visible in the conference data
 - If the query focuses on a specific topic or technology, provide a summary about how that topic is represented in the conference
 - If the query focuses on a specific session type or track, provide insights about the scope and focus of those sessions
 - Keep summaries concise (1-2 paragraphs maximum) and factual, based only on the conference data provided
 - Examples of summary prompts: "provide a summary about [author] and their work on [topic] at [affiliation]", "summarize the machine learning sessions and their focus areas", "describe the poster sessions on remote sensing applications"
+
+Step 4: Format the Output
+Consolidate all the gathered information from the JSON data into a single JSON object.
+The output MUST strictly adhere to the JSON schema defined in Section 4 below.
+If no results are found for the user's query, return a JSON object with an empty results array and a summary message indicating that no matches were found.
+
+
 4. OUTPUT SCHEMA
 Your final output must be a single JSON object matching this structure. Do not output any text or explanations outside of this JSON object.
 {
   "query": "[The original user_query]",
-  "summary": "[A brief, natural-language summary of the results found. E.g., 'Found 3 sessions and 8 papers related to hyperspectral data.']",
+  "summary": "[A brief, natural-language contextual summary of the results found. E.g., 'Found 3 sessions and 8 papers related to hyperspectral data.']",
   "contextual_summary": "[A detailed 1-2 paragraph summary providing context about the results, such as author contributions, topic coverage, or session insights based on the query focus]",
   "results": [
     {
