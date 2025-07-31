@@ -61,6 +61,7 @@ Your final output must be a single JSON object matching this structure. Do not o
             {
               "full_name": "[author.name]",
               "institution": "[author.affiliations[0].institution]",
+
               "profiles": {
                 "google_scholar": "[https://olam.in/dictionary/english/malayalam/null](https://olam.in/dictionary/english/malayalam/null)",
                 "linkedin": "[https://olam.in/dictionary/english/malayalam/null](https://olam.in/dictionary/english/malayalam/null)",
