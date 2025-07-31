@@ -96,7 +96,7 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
                 Showing {results.results.length} session{results.results.length !== 1 ? 's' : ''} with {results.results.reduce((sum, session) => sum + session.papers.length, 0)} paper{results.results.reduce((sum, session) => sum + session.papers.length, 0) !== 1 ? 's' : ''}
               </div>
               {results.results.map((session, index) => (
-                <div key={`${session.session_id}-${index}`} className="card">
+                <div key={`session-${index}-${session.session_id}`} className="card">
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -136,7 +136,7 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
                       </h4>
                       <div className="space-y-3">
                         {session.papers.map((paper, paperIndex) => (
-                          <div key={`${paper.paper_id}-${paperIndex}`} className="bg-gray-50 p-4 rounded-lg">
+                          <div key={`paper-${index}-${paperIndex}-${paper.paper_id}`} className="bg-gray-50 p-4 rounded-lg">
                             <h5 className="font-medium text-gray-800 mb-2">
                               {paper.paper_title}
                             </h5>
