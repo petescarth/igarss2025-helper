@@ -7,7 +7,7 @@ export class AIService {
 
   constructor(apiKey: string) {
     this.genAI = new GoogleGenerativeAI(apiKey);
-    this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+    this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash-thinking-exp-1219' });
   }
 
   async processQuery(query: string, conferenceData: ConferenceData): Promise<QueryResponse> {
