@@ -2,6 +2,10 @@
 
 An AI-powered conference assistant for IGARSS 2025 that helps users find specific information about conference sessions, papers, and speakers using natural language queries.
 
+## Live Demo
+
+🚀 **[Try the live demo here](https://igarsshelper.netlify.app/)**
+
 ## Features
 
 - **Natural Language Search**: Ask questions like "What posters feature Sentinel 2?" or "Show me machine learning sessions on Tuesday"
