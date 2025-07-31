@@ -53,6 +53,12 @@ Return ONLY the JSON response, no additional text or explanations.`;
       // Parse the JSON response
       try {
         const jsonResponse = JSON.parse(cleanedText);
+        
+        // Add debugging information
+        console.log('AI Response Summary:', jsonResponse.summary);
+        console.log('Number of sessions returned:', jsonResponse.results?.length || 0);
+        console.log('Total papers across all sessions:', jsonResponse.results?.reduce((sum, session) => sum + (session.papers?.length || 0), 0) || 0);
+        
         return jsonResponse;
       } catch (parseError) {
         console.error('Failed to parse AI response as JSON:', parseError);
