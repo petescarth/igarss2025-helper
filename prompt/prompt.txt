@@ -24,15 +24,8 @@ If searching for session types: Match against session.type. Note that "poster" m
 If searching for dates/days: Match against day.day_of_week or day.date.
 If searching for authors/people: Match against author.name.
 Aggregate all sessions that contain papers matching the query. A session is a match if any of its papers or its title/type match the query.
-Step 3: Enrich the Data with External Web Search
-For each unique author found in the search results from Step 2, perform a targeted web search to find the following information:
-Google Scholar Profile URL: Search for "[Author Name]" "[Institution]" Google Scholar.
-LinkedIn Profile URL: Search for "[Author Name]" "[Institution]" LinkedIn.
-Other Relevant Links: Search for the author's personal research page, university profile, or links to other significant publications to provide more context.
-Prioritize official-looking URLs (e.g., scholar.google.com, linkedin.com/in/, .edu, .ac.uk).
-If a profile cannot be confidently identified, use null for the URL value.
-Step 4: Format the Output
-Consolidate all the gathered information (from both the JSON data and the web search) into a single JSON object.
+Step 3: Format the Output
+Consolidate all the gathered information from the JSON data into a single JSON object.
 The output MUST strictly adhere to the JSON schema defined in Section 4 below.
 If no results are found for the user's query, return a JSON object with an empty results array and a summary message indicating that no matches were found.
 Create a concise, natural-language summary of the findings.
@@ -61,12 +54,6 @@ Your final output must be a single JSON object matching this structure. Do not o
             {
               "full_name": "[author.name]",
               "institution": "[author.aff[0].ins]",
-
-              "profiles": {
-                "google_scholar": null,
-                "linkedin": null,
-                "other": null
-              }
             }
           ]
         }

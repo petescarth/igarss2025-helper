@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Loader2, Calendar, MapPin, Users, FileText, ExternalLink, AlertCircle } from 'lucide-react';
+import { Search, Loader2, Calendar, MapPin, Users, FileText, AlertCircle } from 'lucide-react';
 import { QueryResponse } from '../types/conference';
 
 interface SearchInterfaceProps {
@@ -145,46 +145,9 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
                                 <Users className="w-4 h-4" />
                                 <div className="flex flex-wrap gap-2">
                                   {paper.authors.map((author, authorIndex) => (
-                                    <div key={`author-${sessionIndex}-${paperIndex}-${authorIndex}`} className="flex items-center gap-1">
-                                      <span>{author.full_name}</span>
-                                      {(author.profiles.google_scholar || author.profiles.linkedin || author.profiles.other) && (
-                                        <div className="flex gap-1">
-                                          {author.profiles.google_scholar && (
-                                            <a
-                                              href={author.profiles.google_scholar}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="text-blue-600 hover:text-blue-800"
-                                              title="Google Scholar"
-                                            >
-                                              <ExternalLink className="w-3 h-3" />
-                                            </a>
-                                          )}
-                                          {author.profiles.linkedin && (
-                                            <a
-                                              href={author.profiles.linkedin}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="text-blue-600 hover:text-blue-800"
-                                              title="LinkedIn"
-                                            >
-                                              <ExternalLink className="w-3 h-3" />
-                                            </a>
-                                          )}
-                                          {author.profiles.other && (
-                                            <a
-                                              href={author.profiles.other}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="text-blue-600 hover:text-blue-800"
-                                              title="Other Profile"
-                                            >
-                                              <ExternalLink className="w-3 h-3" />
-                                            </a>
-                                          )}
-                                        </div>
-                                      )}
-                                    </div>
+                                    <span key={`author-${sessionIndex}-${paperIndex}-${authorIndex}`}>
+                                      {author.full_name}
+                                    </span>
                                   ))}
                                 </div>
                               </div>

@@ -91,20 +91,4 @@ Return ONLY the JSON response, no additional text or explanations.`;
       };
     }
   }
-
-  async enrichWithWebSearch(authors: string[]): Promise<Record<string, any>> {
-    // Note: In a real implementation, this would perform web searches
-    // For now, we'll return placeholder data as the AI model will handle this
-    const enrichedData: Record<string, any> = {};
-    
-    for (const author of authors) {
-      enrichedData[author] = {
-        google_scholar: null,
-        linkedin: null,
-        other: null
-      };
-    }
-    
-    return enrichedData;
-  }
 }

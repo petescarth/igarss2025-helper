@@ -42,11 +42,6 @@ export interface ConferenceData {
 export interface AuthorProfile {
   full_name: string;
   institution: string;
-  profiles: {
-    google_scholar: string | null;
-    linkedin: string | null;
-    other: string | null;
-  };
 }
 
 export interface SearchResult {

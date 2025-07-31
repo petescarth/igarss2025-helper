@@ -131,12 +131,7 @@ export class ConferenceService {
   private createAuthorProfile(author: Author): AuthorProfile {
     return {
       full_name: author.full_name,
-      institution: author.affiliations[0]?.institution || '',
-      profiles: {
-        google_scholar: null, // Would be populated by web search in real implementation
-        linkedin: null,
-        other: null
-      }
+      institution: author.affiliations[0]?.institution || ''
     };
   }
 
