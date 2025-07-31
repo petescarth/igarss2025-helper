@@ -42,7 +42,6 @@ export interface ConferenceData {
 export interface AuthorProfile {
   full_name: string;
   institution: string;
-  country: string;
   profiles: {
     google_scholar: string | null;
     linkedin: string | null;

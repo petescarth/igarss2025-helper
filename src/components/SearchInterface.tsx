@@ -191,9 +191,7 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
                             </div>
                             {paper.authors.length > 0 && (
                               <div className="mt-2 text-xs text-gray-500">
-                                Affiliations: {paper.authors.map(author => 
-                                  `${author.institution} (${author.country})`
-                                ).join('; ')}
+                                Affiliations: {paper.authors.map(author => author.institution).join('; ')}
                               </div>
                             )}
                           </div>

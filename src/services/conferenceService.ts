@@ -132,7 +132,6 @@ export class ConferenceService {
     return {
       full_name: author.full_name,
       institution: author.affiliations[0]?.institution || '',
-      country: author.affiliations[0]?.country || '',
       profiles: {
         google_scholar: null, // Would be populated by web search in real implementation
         linkedin: null,
