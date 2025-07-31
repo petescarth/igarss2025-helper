@@ -25,12 +25,27 @@ ${JSON.stringify(conferenceData, null, 2)}
 USER QUERY:
 ${query}
 
+      // Construct the full prompt
+      const fullPrompt = `${promptTemplate}
+
+CONFERENCE DATA:
+${JSON.stringify(conferenceData, null, 2)}
+
+USER QUERY:
+${query}
+
 Please analyze the user query and return a JSON response following the exact schema specified in the prompt. Remember to:
 1. Search comprehensively through the conference data
 2. Match sessions based on titles, paper titles, authors, session types, dates, and keywords
 3. Include all relevant sessions and papers that match the query
 4. Format the response exactly as specified in the JSON schema
 5. Generate a helpful summary of the findings
+
+Return ONLY the JSON response, no additional text or explanations.`;
+
+      // Count tokens before making the request
+      const tokenCount = await this.model.countTokens(fullPrompt);
+      console.log(`Token count for request: ${tokenCount.totalTokens}`);
 
 Return ONLY the JSON response, no additional text or explanations.`;
 
