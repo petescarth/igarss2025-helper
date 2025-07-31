@@ -59,6 +59,14 @@ Return ONLY the JSON response, no additional text or explanations.`;
         console.log('Number of sessions returned:', jsonResponse.results?.length || 0);
         console.log('Total papers across all sessions:', jsonResponse.results?.reduce((sum, session) => sum + (session.papers?.length || 0), 0) || 0);
         
+        // Check for duplicate session IDs
+        const sessionIds = jsonResponse.results?.map(session => session.session_id) || [];
+        const uniqueSessionIds = [...new Set(sessionIds)];
+        if (sessionIds.length !== uniqueSessionIds.length) {
+          console.warn('Duplicate session IDs detected:', sessionIds);
+          console.log('Unique session IDs:', uniqueSessionIds);
+        }
+        
         return jsonResponse;
       } catch (parseError) {
         console.error('Failed to parse AI response as JSON:', parseError);
