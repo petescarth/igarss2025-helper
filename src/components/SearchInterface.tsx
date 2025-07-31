@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Loader2, Calendar, MapPin, Users, FileText } from 'lucide-react';
+import { Search, Loader2, Calendar, MapPin, Users, FileText, ExternalLink, AlertCircle } from 'lucide-react';
 import { QueryResponse } from '../types/conference';
 
 interface SearchInterfaceProps {
@@ -24,11 +24,14 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
   };
 
   const exampleQueries = [
-    "What sessions are about machine learning?",
-    "Show me poster sessions on Tuesday",
-    "Find presentations about Sentinel-2",
-    "Who is presenting on remote sensing applications?",
-    "What sessions are in the morning on Wednesday?"
+    "What posters feature Sentinel 2?",
+    "Show me sessions about machine learning on Tuesday",
+    "Find presentations about hyperspectral data",
+    "Who is presenting on SAR applications?",
+    "What oral sessions are scheduled for Wednesday morning?",
+    "Find papers by authors from University of California",
+    "Show me all keynote presentations",
+    "What sessions are in the Land Applications track?"
   ];
 
   return (
@@ -137,9 +140,50 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-2 text-sm text-gray-600">
                                 <Users className="w-4 h-4" />
-                                <span>
-                                  {paper.authors.map(author => author.full_name).join(', ')}
-                                </span>
+                                <div className="flex flex-wrap gap-2">
+                                  {paper.authors.map((author, authorIndex) => (
+                                    <div key={authorIndex} className="flex items-center gap-1">
+                                      <span>{author.full_name}</span>
+                                      {(author.profiles.google_scholar || author.profiles.linkedin || author.profiles.other) && (
+                                        <div className="flex gap-1">
+                                          {author.profiles.google_scholar && (
+                                            <a
+                                              href={author.profiles.google_scholar}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="text-blue-600 hover:text-blue-800"
+                                              title="Google Scholar"
+                                            >
+                                              <ExternalLink className="w-3 h-3" />
+                                            </a>
+                                          )}
+                                          {author.profiles.linkedin && (
+                                            <a
+                                              href={author.profiles.linkedin}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="text-blue-600 hover:text-blue-800"
+                                              title="LinkedIn"
+                                            >
+                                              <ExternalLink className="w-3 h-3" />
+                                            </a>
+                                          )}
+                                          {author.profiles.other && (
+                                            <a
+                                              href={author.profiles.other}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="text-blue-600 hover:text-blue-800"
+                                              title="Other Profile"
+                                            >
+                                              <ExternalLink className="w-3 h-3" />
+                                            </a>
+                                          )}
+                                        </div>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
                               <span className="text-xs font-mono text-gray-500">
                                 {paper.paper_id}
@@ -162,7 +206,9 @@ export const SearchInterface: React.FC<SearchInterfaceProps> = ({ onSearch, isLo
             </div>
           ) : (
             <div className="card text-center py-8">
-              <p className="text-gray-600">No results found for your query. Try different keywords or check the example queries above.</p>
+              <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600 mb-2">No results found for your query.</p>
+              <p className="text-sm text-gray-500">Try different keywords or check the example queries above.</p>
             </div>
           )}
 

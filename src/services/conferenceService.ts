@@ -1,7 +1,15 @@
 import { ConferenceData, Session, Paper, Author, QueryResponse, SearchResult, AuthorProfile } from '../types/conference';
+import { AIService } from './aiService';
 
 export class ConferenceService {
   private conferenceData: ConferenceData | null = null;
+  private aiService: AIService | null = null;
+
+  constructor(apiKey?: string) {
+    if (apiKey) {
+      this.aiService = new AIService(apiKey);
+    }
+  }
 
   async loadConferenceData(): Promise<void> {
     try {
@@ -16,7 +24,20 @@ export class ConferenceService {
     }
   }
 
-  searchConference(query: string): QueryResponse {
+  async searchConference(query: string): Promise<QueryResponse> {
+    if (!this.conferenceData) {
+      throw new Error('Conference data not loaded');
+    }
+
+    // Use AI service if available, otherwise fall back to basic search
+    if (this.aiService) {
+      return await this.aiService.processQuery(query, this.conferenceData);
+    } else {
+      return this.basicSearch(query);
+    }
+  }
+
+  private basicSearch(query: string): QueryResponse {
     if (!this.conferenceData) {
       throw new Error('Conference data not loaded');
     }
@@ -49,7 +70,7 @@ export class ConferenceService {
       }))
     }));
 
-    const summary = this.generateSummary(results, normalizedQuery);
+    const summary = this.generateSummary(results, query);
 
     return {
       query,
