@@ -9,7 +9,7 @@ An AI-powered conference assistant for IGARSS 2025 that helps users find specifi
 ## Features
 
 - **Natural Language Search**: Ask questions like "What posters feature Sentinel 2?" or "Show me machine learning sessions on Tuesday"
-- **AI-Powered Responses**: Uses Google Generative AI to provide rich, contextual answers
+- **AI-Powered Responses**: Uses OpenAI GPT-4.1-nano to provide rich, contextual answers
 - **Comprehensive Data**: Searches through sessions, papers, authors, and affiliations
 - **Author Profiles**: Enriched with links to Google Scholar, LinkedIn, and other professional profiles
 - **Structured Results**: Clear presentation of session details, schedules, and locations
@@ -17,8 +17,9 @@ An AI-powered conference assistant for IGARSS 2025 that helps users find specifi
 ## Setup
 
 1. **Get a Google AI API Key**:
-   - Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-   - Sign in with your Google account
+1. **Get an OpenAI API Key**:
+   - Visit [OpenAI Platform](https://platform.openai.com/api-keys)
+   - Sign in with your OpenAI account
    - Create a new API key
 
 2. **Configure the API Key**:
@@ -51,7 +52,7 @@ The assistant can handle various types of queries:
 ## Technical Details
 
 - **Frontend**: React + TypeScript + Tailwind CSS
-- **AI Integration**: Google Generative AI (Gemini Pro)
+- **AI Integration**: OpenAI GPT-4.1-nano-2025-04-14
 - **Data Processing**: JSON-based conference program parsing
 - **Search**: AI-powered semantic search with fallback to keyword matching
 

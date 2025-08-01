@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     // Check for API key in environment variables
-    const envApiKey = import.meta.env.VITE_GOOGLE_AI_API_KEY;
+    const envApiKey = import.meta.env.VITE_OPENAI_API_KEY;
     if (envApiKey && envApiKey !== 'your_api_key_here') {
       setApiKey(envApiKey);
       initializeService(envApiKey);
@@ -111,14 +111,14 @@ function App() {
             <Settings className="w-12 h-12 text-primary-600 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-gray-800 mb-2">Setup Required</h2>
             <p className="text-gray-600">
-              Please enter your Google Generative AI API key to use the conference assistant.
+              Please enter your OpenAI API key to use the conference assistant.
             </p>
           </div>
           
           <form onSubmit={handleApiKeySubmit} className="space-y-4">
             <div>
               <label htmlFor="apiKey" className="block text-sm font-medium text-gray-700 mb-2">
-                Google AI API Key
+                OpenAI API Key
               </label>
               <input
                 type="password"
@@ -153,8 +153,8 @@ function App() {
           <div className="mt-6 p-4 bg-blue-50 rounded-lg">
             <h3 className="text-sm font-medium text-blue-800 mb-2">How to get your API key:</h3>
             <ol className="text-sm text-blue-700 space-y-1">
-              <li>1. Visit <a href="https://makersuite.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="underline">Google AI Studio</a></li>
-              <li>2. Sign in with your Google account</li>
+              <li>1. Visit <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="underline">OpenAI Platform</a></li>
+              <li>2. Sign in with your OpenAI account</li>
               <li>3. Create a new API key</li>
               <li>4. Copy and paste it above</li>
             </ol>
@@ -219,7 +219,7 @@ function App() {
       <footer className="bg-white border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="text-center text-gray-600">
-            <p>IGARSS 2025 Conference Assistant - Powered by Google Generative AI</p>
+            <p>IGARSS 2025 Conference Assistant - Powered by OpenAI GPT-4.1-nano</p>
             <p className="text-sm mt-1">
               Advanced AI-powered search through conference sessions, papers, and speakers
             </p>
