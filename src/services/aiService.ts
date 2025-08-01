@@ -39,10 +39,10 @@ Please analyze the user query and return a JSON response following the exact sch
 
 Return ONLY the JSON response, no additional text or explanations.`;
 
-      console.log('Making request to OpenAI GPT-4.1-nano-2025-04-14...');
+      console.log('Making request to OpenAI GPT-4.1-2025-04-14...');
 
       const completion = await this.openai.chat.completions.create({
-        model: 'gpt-4.1-nano-2025-04-14',
+        model: 'gpt-4.1-2025-04-14',
         messages: [
           {
             role: 'system',

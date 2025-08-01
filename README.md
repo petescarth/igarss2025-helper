@@ -52,7 +52,7 @@ The assistant can handle various types of queries:
 ## Technical Details
 
 - **Frontend**: React + TypeScript + Tailwind CSS
-- **AI Integration**: OpenAI GPT-4.1-nano-2025-04-14
+- **AI Integration**: OpenAI GPT-4.1-2025-04-14
 - **Data Processing**: JSON-based conference program parsing
 - **Search**: AI-powered semantic search with fallback to keyword matching
 

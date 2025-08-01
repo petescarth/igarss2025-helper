@@ -219,7 +219,7 @@ function App() {
       <footer className="bg-white border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="text-center text-gray-600">
-            <p>IGARSS 2025 Conference Assistant - Powered by OpenAI GPT-4.1-nano</p>
+            <p>IGARSS 2025 Conference Assistant - Powered by OpenAI GPT-4.1</p>
             <p className="text-sm mt-1">
               Advanced AI-powered search through conference sessions, papers, and speakers
             </p>
