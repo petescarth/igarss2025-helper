@@ -16,7 +16,6 @@ An AI-powered conference assistant for IGARSS 2025 that helps users find specifi
 
 ## Setup
 
-1. **Get a Google AI API Key**:
 1. **Get an OpenAI API Key**:
    - Visit [OpenAI Platform](https://platform.openai.com/api-keys)
    - Sign in with your OpenAI account
